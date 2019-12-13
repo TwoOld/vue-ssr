@@ -1,6 +1,8 @@
 import { createApp } from './app'
 
 export default ctx => {
+  const list = []
+  list.forEach(item => console.log('for each', item))
   // 返回一个Promise
   // 确保路由或组件准备就绪
   return new Promise((resolve, reject) => {

@@ -1,6 +1,5 @@
 const fs = require('fs')
 const express = require('express')
-const Vue = require('vue')
 
 const app = express()
 
@@ -38,7 +37,7 @@ function render2String(ctx) {
 
 app.use(express.static('./dist/client'))
 // 服务端路由声明
-app.get('*', async function(req, res) {
+app.get('*', async function (req, res) {
   try {
     const context = {
       title: 'ssr test',
