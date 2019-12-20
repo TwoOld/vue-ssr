@@ -1,22 +1,33 @@
 <template>
   <div>
-    <h1>Detail</h1>
-    <!-- <p>hello {{items.name}}</p> -->
+    <h1>Detail1</h1>
+    <p>hello {{item.name}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  // computed: {
-  //   items() {
-  //     return this.$store.state.user.items
-  //   }
-  // },
+  asyncData({ store }) {
+    console.log('async data detail', store.state.user.item)
+
+    if (!store.state.user.item.name) {
+      return store.dispatch('user/fetchItem')
+    }
+  },
+  computed: {
+    item() {
+      return this.$store.state.user.item
+    }
+  },
   beforeCreate() {
     console.log('before create: detail')
   },
   created() {
-    console.log('create: detail', this.$store.state)
+    console.log('create: detail', window.__INITIAL_STATE__)
+    setTimeout(
+      () => this.$store.commit('user/initItem', { name: 'archie' }),
+      2000
+    )
   },
   beforeMount() {
     console.log('before mount: detail')

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>Index</h2>
+    <h2>Index1</h2>
+    <h3>{{item.name}}</h3>
     <p>num : {{count}}</p>
     <p v-if="count%2">mounted?</p>
     <button @click="$store.commit('user/add')">add</button>
@@ -12,11 +13,13 @@ export default {
   computed: {
     count() {
       return this.$store.state.user.count
+    },
+    item() {
+      return this.$store.state.user.item
     }
   },
   asyncData({ store, route }) {
     console.log('async data index')
-
     // 触发 action 后，会返回 Promise
     return store.dispatch('user/fetchItem')
   },
@@ -24,13 +27,14 @@ export default {
     console.log('before create: index')
   },
   created() {
-    console.log('created: index', this.$store.state)
+    console.log('created: index')
+    // this.$store.dispatch('user/fetchItem')
   },
   beforeMount() {
     console.log('before mount: index')
   },
   mounted() {
-    console.log('mounted: index')
+    console.log('mounted: index', this.$store.state.user)
   },
   beforeDestroy() {
     console.log('before destroy: index')
