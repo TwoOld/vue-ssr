@@ -1,17 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
-export function createStore() {
+export function createStore($http) {
+  Vuex.Store.prototype.$http = $http
   return new Vuex.Store({
-    state: {
-      count: 108,
-    },
-    mutations: {
-      add(state) {
-        state.count += 1
-      },
-    },
+    modules: {
+      user
+    }
   })
 }

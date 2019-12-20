@@ -11,12 +11,29 @@ export function createRouter() {
     routes: [
       {
         path: '/',
-        component: () => import('@/components/Index'),
+        component: () => import('@/layout/default'),
+        children: [
+          {
+            path: '/',
+            component: () => import('@/components/Index')
+          }
+        ]
       },
       {
         path: '/detail',
-        component: () => import('@/components/Detail'),
+        component: () => import('@/layout/default'),
+        children: [
+          {
+            path: '/detail/:id',
+            component: () => import('@/components/Detail')
+          }
+        ]
       },
+      {
+        path: '/404',
+        component: () => import('@/pages/NotFound'),
+      },
+      { path: '*', redirect: '/404', hidden: true }
     ],
   })
 }

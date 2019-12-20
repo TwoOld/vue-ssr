@@ -26,6 +26,8 @@ const renderer = createBundleRenderer(bundle, {
 function render2String(ctx) {
   return new Promise((resolve, reject) => {
     renderer.renderToString(ctx, (err, html) => {
+      console.log(err, html)
+
       if (err) {
         reject(err)
         return
@@ -35,9 +37,15 @@ function render2String(ctx) {
   })
 }
 
+const proxy = require('http-proxy-middleware')
+
 app.use(express.static('./dist/client'))
+
+app.use('/api', proxy({ target: 'http://localhost:8080', changeOrigin: true }))
 // 服务端路由声明
 app.get('*', async function (req, res) {
+  console.log('req', req.url)
+
   try {
     const context = {
       title: 'ssr test',
@@ -46,7 +54,11 @@ app.get('*', async function (req, res) {
     const html = await render2String(context)
     res.send(html)
   } catch (error) {
-    res.status(500).send('Internal Server Error')
+    if (error.code === 404) {
+      res.status(404).end('Page not found')
+    } else {
+      res.status(500).end('Internal Server Error')
+    }
   }
 })
 
