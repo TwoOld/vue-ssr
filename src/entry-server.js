@@ -21,7 +21,7 @@ export default ctx => {
       // resolve(app)
       // 对所有匹配的路由组件调用 `asyncData()`
       Promise.all(matchedComponents.map(Component => {
-        console.log(Component)
+        // console.log(Component)
 
         if (Component.asyncData) {
           return Component.asyncData({

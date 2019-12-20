@@ -26,8 +26,6 @@ const renderer = createBundleRenderer(bundle, {
 function render2String(ctx) {
   return new Promise((resolve, reject) => {
     renderer.renderToString(ctx, (err, html) => {
-      console.log(err, html)
-
       if (err) {
         reject(err)
         return

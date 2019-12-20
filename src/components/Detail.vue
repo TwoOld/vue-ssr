@@ -23,7 +23,7 @@ export default {
     console.log('before create: detail')
   },
   created() {
-    console.log('create: detail', window.__INITIAL_STATE__)
+    console.log('create: detail')
     setTimeout(
       () => this.$store.commit('user/initItem', { name: 'archie' }),
       2000
@@ -33,7 +33,7 @@ export default {
     console.log('before mount: detail')
   },
   mounted() {
-    console.log('mounted: detail')
+    console.log('mounted: detail', window.__INITIAL_STATE__)
   },
   beforeDestroy() {
     console.log('before destroy: detail')
