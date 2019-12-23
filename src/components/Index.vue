@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Index1</h2>
+    <h1>Index1</h1>
     <h3>{{item.name}}</h3>
     <p>num : {{count}}</p>
     <p v-if="count%2">mounted?</p>
