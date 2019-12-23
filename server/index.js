@@ -16,7 +16,9 @@ const vm = new Vue({
 const renderer = require('vue-server-renderer').createRenderer()
 
 // 服务端路由声明
-app.get('/', async function (req, res) {
+app.get('*', async function (req, res) {
+    console.log('request: ', req.url)
+
     try {
         const html = await renderer.renderToString(vm)
         res.send(html)
