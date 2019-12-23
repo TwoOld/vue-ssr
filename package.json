@@ -5,7 +5,8 @@
   "scripts": {
     "build:client": "vue-cli-service build --watch",
     "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --mode server --watch",
-    "build": "concurrently \"npm run build:client\" \"npm run build:server\""
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
+    "ci": "git-cz"
   },
   "dependencies": {
     "axios": "^0.19.0",
