@@ -6,10 +6,10 @@ export function createAxios(context) {
     })
     http.interceptors.request.use(
         config => {
-            console.log('request config:', config.url);
+            console.log('request config:', config.url)
             return config
         },
-        err => Promise.resolve(err)
+        err => Promise.reject(err)
     )
     http.interceptors.response.use(
         response => {
@@ -17,12 +17,13 @@ export function createAxios(context) {
             return response.data
         },
         err => {
-            console.log('http response:', err.response.status, err.response.data)
+            console.log('http response:', err)
             const res = {}
             if (err.response.status === 404) {
                 res.code = 404
+                res.url = err.response.config.url
             }
-            return Promise.resolve(res)
+            return Promise.reject(res)
         }
     )
 

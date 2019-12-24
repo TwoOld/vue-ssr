@@ -40,7 +40,15 @@ export default context => {
                 context.state = store.state
 
                 resolve(app)
-            }).catch(reject)
-        }, reject)
+            }).catch(err => {
+                console.log('render error:', err)
+                context.serverError = true
+                resolve(app)
+            })
+        }, err => {
+            console.log('router error', err);
+            context.serverError = true
+            resolve(app)
+        })
     })
 }

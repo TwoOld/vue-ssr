@@ -5,7 +5,7 @@ if (window.__INITIAL_STATE__) {
     store.replaceState(window.__INITIAL_STATE__)
 }
 
-router.onReady(() => {
+router.onReady((current) => {
     // 添加路由钩子函数，用于处理 asyncData.
     // 在初始路由 resolve 后执行，
     // 以便我们不会二次预取(double-fetch)已有的数据。
@@ -27,9 +27,9 @@ router.onReady(() => {
 
         // 这里如果有加载指示器 (loading indicator)，就触发
 
-        Promise.all(activated.map(c => {
+        Promise.all(activated.map(function (c) {
             if (c.asyncData) {
-                return c.asyncData({ store, route: to }).catch(err => console.log(`${err} 报错了`))
+                return c.asyncData({ store, route: to }).catch(err => console.log(current.path, '页面报错了', err))
             }
         })).then(() => {
             // 停止加载指示器(loading indicator)
@@ -37,6 +37,8 @@ router.onReady(() => {
             next()
         }).catch(next)
     })
+
+    // @todo 服务器渲染错误处理
 
     app.$mount('#app', true)
 })

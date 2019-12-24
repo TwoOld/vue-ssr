@@ -35,18 +35,19 @@ app.get('*', async function (req, res) {
 
     const context = {
         title: 'vue ssr',
-        url: req.url
+        url: req.url,
+        serverError: false
     }
     try {
         const html = await render2String(context)
         res.send(html)
     } catch (error) {
-        console.log(`${error}`);
+        console.log('req error', error);
 
         res.status(500).send('Internal Server Error')
     }
 })
 
-app.listen(3000, () => {
+app.listen(3030, () => {
     console.log('渲染服务器启动成功');
 })

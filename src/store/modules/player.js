@@ -14,7 +14,7 @@ const mutations = {
 }
 
 const actions = {
-    fetchList({ commit }) {
+    fetchList({ state, commit }, payload) {
         return this.$http.get('/player/list').then(res => {
             console.log('player fetch list:', res)
             if (res.code === 0) {
