@@ -6,6 +6,20 @@ import { createStore } from './store'
 import { createAxios } from './utils/http'
 import App from './App.vue'
 
+Vue.mixin({
+    beforeRouteUpdate(to, from, next) {
+        const { asyncData } = this.$options
+        if (asyncData) {
+            asyncData({
+                store: this.$store,
+                route: to
+            }).then(next).catch(next)
+        } else {
+            next()
+        }
+    }
+})
+
 export function createApp(context) {
     const router = createRouter()
     const $http = createAxios(context)
