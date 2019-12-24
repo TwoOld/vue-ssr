@@ -16,4 +16,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  background: antiquewhite;
+}
 </style>
