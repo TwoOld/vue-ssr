@@ -22,7 +22,7 @@ const mutations = {
 const actions = {
   fetchItem({ commit }) {
     return this.$http.get('/user/info').then(res => {
-      console.log(res.data.data)
+      console.log('http:', res.data.data)
       commit('initItem', res.data.data)
     }).catch(err => console.log(err))
   }

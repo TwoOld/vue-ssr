@@ -30,6 +30,8 @@ export default ctx => {
           })
         }
       })).then(() => {
+        console.log('async data server:', store.state)
+
         // 在所有预取钩子(preFetch hook) resolve 后，
         // 我们的 store 现在已经填充入渲染应用程序所需的状态。
         // 当我们将状态附加到上下文，

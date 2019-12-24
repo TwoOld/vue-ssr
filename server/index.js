@@ -37,7 +37,7 @@ function render2String(ctx) {
 
 const proxy = require('http-proxy-middleware')
 
-app.use(express.static('./dist/client'))
+app.use(express.static('./dist/client', { index: false }))
 
 app.use('/api', proxy({ target: 'http://localhost:8080', changeOrigin: true }))
 // 服务端路由声明
