@@ -9,6 +9,10 @@
 
 <script>
 export default {
+  asyncData({ store, route }) {
+    console.log('async data detail')
+    return store.dispatch('player/fetchList')
+  },
   computed: {
     list() {
       return this.$store.state.player.list

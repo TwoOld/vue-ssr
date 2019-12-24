@@ -1,11 +1,7 @@
 import Vue from 'vue'
 const state = {
-    best: {
-        player_name: 'chiu'
-    },
-    list: [
-        { player_id: 1, player_name: 'chiu', player_age: 29 }
-    ]
+    best: {},
+    list: []
 }
 
 const mutations = {
@@ -19,10 +15,15 @@ const mutations = {
 
 const actions = {
     fetchList({ commit }) {
-        commit('INIT_LIST', [
-            { player_id: 1, player_name: 'chiu', player_age: 29 },
-            { player_id: 2, player_name: 'james', player_age: 35 },
-        ])
+        return this.$http.get('/player/list').then(res => {
+            console.log('player fetch list:', res)
+            if (res.code === 0) {
+                commit('INIT_LIST', res.data)
+                if (res.data.length) {
+                    commit('SET_BEST', res.data[0])
+                }
+            }
+        })
     }
 }
 

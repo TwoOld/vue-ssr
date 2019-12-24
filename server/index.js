@@ -25,8 +25,10 @@ function render2String(context) {
         })
     })
 }
+const proxy = require('http-proxy-middleware')
 
 app.use(express.static('./dist/client', { index: false }))
+app.use('/api', proxy({ target: 'http://localhost:8080', changeOrigin: true }))
 // 服务端路由声明
 app.get('*', async function (req, res) {
     console.log('request: ', req.url)
@@ -39,7 +41,7 @@ app.get('*', async function (req, res) {
         const html = await render2String(context)
         res.send(html)
     } catch (error) {
-        console.log(error);
+        console.log(`${error}`);
 
         res.status(500).send('Internal Server Error')
     }

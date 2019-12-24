@@ -9,7 +9,7 @@
 export default {
   computed: {
     best() {
-      return this.$store.state.player.best.player_name
+      return this.$store.state.player.best.player_name || '?'
     }
   }
 }
