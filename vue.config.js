@@ -4,6 +4,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 // 优化策略
 const nodeExternals = require('webpack-node-externals')
 const merge = require('lodash.merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 根据 WEBPACK_TARGET 环境变量做相应输出
 const TARGET_NODE = process.env.WEBPACK_TARGET === 'node'
 const target = TARGET_NODE ? 'server' : 'client'
@@ -42,9 +43,18 @@ module.exports = {
         },
         // 这是将服务器的整个输出构建为单个 JSON 文件的插件
         // 服务端默认文件名为 `vue-ssr-server-bundle.json`
-        plugins: [
-            TARGET_NODE ? new VueSSRServerPlugin() : new VueSSRClientPlugin(),
-        ],
+        plugins:
+            TARGET_NODE ?
+                [new VueSSRServerPlugin()] :
+                [
+                    new HtmlWebpackPlugin({
+                        filename: 'index.csr.html',
+                        template: 'src/index.csr.html',
+                        inject: true
+                    }),
+                    new VueSSRClientPlugin(),
+                ],
+
     }),
     chainWebpack: config => {
         config.module
