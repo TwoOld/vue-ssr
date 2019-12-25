@@ -4,6 +4,8 @@ import Vue from 'vue'
 import { createRouter } from './router'
 import { createStore } from './store'
 import { createAxios } from './utils/http'
+import { Button } from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 
 Vue.mixin({
@@ -19,6 +21,8 @@ Vue.mixin({
         }
     }
 })
+
+Vue.use(Button)
 
 export function createApp(context) {
     const router = createRouter()

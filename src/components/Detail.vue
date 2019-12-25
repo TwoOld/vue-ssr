@@ -2,7 +2,11 @@
   <div>
     <h1>Detail</h1>
     <ul>
-      <li v-for="item in list" :key="item.player_id">{{ item.player_name }}</li>
+      <li
+        v-for="item in list"
+        :key="item.player_id"
+        @click="handleBest(item)"
+      >{{ item.player_name }}</li>
     </ul>
   </div>
 </template>
@@ -17,6 +21,11 @@ export default {
     list() {
       return this.$store.state.player.list
     }
+  },
+  methods: {
+    handleBest(payload) {
+      this.$store.commit('player/SET_BEST', payload)
+    }
   }
 }
 </script>
@@ -24,5 +33,8 @@ export default {
 <style lang="scss" scoped>
 h1 {
   color: aquamarine;
+}
+li {
+  cursor: pointer;
 }
 </style>
