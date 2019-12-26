@@ -33,7 +33,7 @@ app.use('/api', proxy({ target: 'http://localhost:8080', changeOrigin: true }))
 
 function csr(res) {
     // 读取文件
-    const filename = path.resolve(process.cwd(), 'dist/client/index.csr.html')
+    const filename = path.resolve(process.cwd(), 'dist/client/index.html')
     const html = fs.readFileSync(filename, 'utf-8')
     return res.send(html)
 }

@@ -48,8 +48,8 @@ module.exports = {
                 [new VueSSRServerPlugin()] :
                 [
                     new HtmlWebpackPlugin({
-                        filename: 'index.csr.html',
-                        template: 'src/index.csr.html',
+                        filename: 'index.html',
+                        template: 'public/index.html',
                         inject: true
                     }),
                     new VueSSRClientPlugin(),
