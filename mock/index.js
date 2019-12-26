@@ -1,10 +1,10 @@
 const express = require('express')
 const app = new express()
 
+app.use(express.json())
 // app.use('*', (req, res) => {
 // })
 app.get('/api/player/list', (req, res) => {
-    res.header('Content-Type', 'application/json;charse=utf-8')
     res.json({
         code: 0,
         data: [
@@ -30,6 +30,11 @@ app.get('/api/player/list', (req, res) => {
             },
         ]
     })
+})
+
+app.post('/api/user/login', (req, res) => {
+    res.cookie('token', 'abc')
+    res.json({ code: 0, data: { name: 'chiu', token: 'abc' } })
 })
 
 // app.get('/api/user/menu', (req, res) => {

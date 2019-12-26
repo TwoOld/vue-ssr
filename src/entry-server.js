@@ -8,6 +8,7 @@ export default context => {
         const { app, router, store } = createApp(context)
         // 跳转首屏地址
         router.push(context.url)
+        context.cookies.token && (store.state.user.token = context.cookies.token)
         // 路由就绪，完成Promise
         router.onReady(() => {
             const matchedComponents = router.getMatchedComponents()
@@ -20,16 +21,15 @@ export default context => {
             // Promise 应该 resolve 应用程序实例，以便它可以渲染
             // resolve(app)
             // 对所有匹配的路由组件调用 `asyncData()`
-            Promise.all(matchedComponents.map(Component => {
-                // console.log(Component)
-
-                if (Component.asyncData) {
-                    return Component.asyncData({
-                        store,
-                        route: router.currentRoute
-                    })
-                }
-            })).then(() => {
+            Promise.all(matchedComponents.map(({ asyncData }) => asyncData &&
+                asyncData({
+                    store,
+                    route: router.currentRoute,
+                    cookies: context.cookies,
+                    isServer: true,
+                    isClient: false
+                }).catch(err => console.log(`${router.currentRoute.path}报错了,${err}`))
+            )).then(() => {
                 console.log('async data server:', store.state)
 
                 // 在所有预取钩子(preFetch hook) resolve 后，

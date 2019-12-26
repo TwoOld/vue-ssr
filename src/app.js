@@ -4,7 +4,7 @@ import Vue from 'vue'
 import { createRouter } from './router'
 import { createStore } from './store'
 import { createAxios } from './utils/http'
-import { Button } from 'element-ui';
+import { Button, Input } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 
@@ -23,11 +23,18 @@ Vue.mixin({
 })
 
 Vue.use(Button)
+Vue.use(Input)
 
 export function createApp(context) {
+    let store
     const router = createRouter()
-    const $http = createAxios(context)
-    const store = createStore($http)
+    const params = {
+        context,
+        getStore: () => store,
+        router
+    }
+    const $http = createAxios(params)
+    store = createStore($http)
     const app = new Vue({
         router,
         store,

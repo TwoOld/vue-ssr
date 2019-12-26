@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export function createAxios(context) {
+export function createAxios({ context, store, router }) {
     const http = axios.create({
         baseURL: context ? 'http://localhost:8080/api' : '/api'
     })
     http.interceptors.request.use(
         config => {
-            console.log('request config:', config.url)
+            console.log('request config:', config, getStore().state)
             return config
         },
         err => Promise.reject(err)

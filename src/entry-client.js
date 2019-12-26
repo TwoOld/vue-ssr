@@ -27,15 +27,20 @@ router.onReady((current) => {
 
         // 这里如果有加载指示器 (loading indicator)，就触发
 
-        Promise.all(activated.map(function (c) {
-            if (c.asyncData) {
-                return c.asyncData({ store, route: to }).catch(err => console.log(current.path, '页面报错了', err))
-            }
-        })).then(() => {
-            // 停止加载指示器(loading indicator)
+        Promise.all(activated.map(
+            ({ asyncData }) => asyncData &&
+                asyncData({
+                    store,
+                    route: to,
+                    isServer: false,
+                    isClient: true
+                }).catch(err => console.log(current.path, '页面报错了', err))
+        ))
+            .then(() => {
+                // 停止加载指示器(loading indicator)
 
-            next()
-        }).catch(next)
+                next()
+            }).catch(next)
     })
 
     // @todo 服务器渲染错误处理

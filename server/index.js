@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 // express实例
 const app = express()
+const cookieParser = require('cookie-parser')
 // 创建打包渲染器
 const { createBundleRenderer } = require('vue-server-renderer')
 const bundle = require('../dist/server/vue-ssr-server-bundle.json')
@@ -29,6 +30,7 @@ function render2String(context) {
 const proxy = require('http-proxy-middleware')
 
 app.use(express.static('./dist/client', { index: false }))
+app.use(cookieParser())
 app.use('/api', proxy({ target: 'http://localhost:8080', changeOrigin: true }))
 
 function csr(res) {
@@ -50,7 +52,8 @@ app.get('*', async function (req, res) {
     const context = {
         title: 'vue ssr',
         url: req.url,
-        serverError: false
+        serverError: false,
+        cookies: req.cookies
     }
     try {
         const html = await render2String(context)

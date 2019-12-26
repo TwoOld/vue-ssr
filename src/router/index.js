@@ -20,6 +20,17 @@ export function createRouter() {
                 ]
             },
             {
+                path: '/login',
+                component: () => import('@/layout/login'),
+                children: [
+                    {
+                        path: '/login',
+                        name: 'login',
+                        component: () => import('@/pages/Login')
+                    }
+                ]
+            },
+            {
                 path: '/detail',
                 component: () => import('@/layout/default'),
                 children: [
