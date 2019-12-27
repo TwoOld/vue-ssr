@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 const state = {
     best: {},
     list: []
@@ -10,7 +8,7 @@ const mutations = {
         state.list = payload
     },
     SET_BEST(state, payload) {
-        Object.keys(payload).forEach(k => Vue.set(state.best, k, payload[k]))
+        state.best = payload
     }
 }
 

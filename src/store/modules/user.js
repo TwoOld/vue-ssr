@@ -17,7 +17,7 @@ const actions = {
     login({ state, commit }, payload) {
         console.log(payload);
 
-        return this.$http.post('/user/login', payload).then(res => {
+        return this.$http.post('/api/user/login', payload).then(res => {
             console.log('login:', res)
             if (res.code === 0) {
                 commit('SET_INFO', res.data)

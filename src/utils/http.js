@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export function createAxios({ context, getStore, router }) {
     const http = axios.create({
-        baseURL: context ? 'http://localhost:8080/api' : '/api'
+        baseURL: context ? 'http://localhost:8080' : ''
     })
     http.interceptors.request.use(
         config => {
