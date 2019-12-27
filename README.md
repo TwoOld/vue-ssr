@@ -8,6 +8,7 @@
 - axios
 - mock
 - css
+- element-ui
 - CSR 降级
 - cookie 穿透鉴权
 
