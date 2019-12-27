@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 const state = {
     best: {},
     list: []
@@ -15,7 +16,7 @@ const mutations = {
 
 const actions = {
     fetchList({ state, commit }, payload) {
-        return this.$http.get('/player/list').then(res => {
+        return this.$player.get_players().then(res => {
             console.log('player fetch list:', res)
             if (res.code === 0) {
                 commit('INIT_LIST', res.data)
