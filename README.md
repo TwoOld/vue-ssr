@@ -1,19 +1,16 @@
 # vue-ssr
 
-## Project setup
-```
-npm install
-```
+**已完成**
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- vue-router
+- vuex
+- 数据预取 asyncData
+- axios
+- mock
+- css
+- CSR 降级
+- cookie 穿透鉴权
 
-### Compiles and minifies for production
-```
-npm run build
-```
+**todo**
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 热加载
