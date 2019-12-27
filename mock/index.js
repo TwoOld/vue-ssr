@@ -4,7 +4,7 @@ const app = new express()
 app.use(express.json())
 // app.use('*', (req, res) => {
 // })
-app.get('/api/player/list', (req, res) => {
+app.get('/player/list', (req, res) => {
     res.json({
         code: 0,
         data: [
@@ -32,7 +32,7 @@ app.get('/api/player/list', (req, res) => {
     })
 })
 
-app.post('/api/user/login', (req, res) => {
+app.post('/user/login', (req, res) => {
     res.cookie('token', 'abc')
     res.json({ code: 0, data: { name: 'chiu', token: 'abc' } })
 })

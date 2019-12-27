@@ -16,6 +16,11 @@ export function createRouter() {
                         path: '/',
                         name: 'index',
                         component: () => import('@/components/Index')
+                    },
+                    {
+                        path: '/detail',
+                        name: 'detail',
+                        component: () => import('@/components/Detail')
                     }
                 ]
             },
@@ -27,17 +32,6 @@ export function createRouter() {
                         path: '/login',
                         name: 'login',
                         component: () => import('@/pages/Login')
-                    }
-                ]
-            },
-            {
-                path: '/detail',
-                component: () => import('@/layout/default'),
-                children: [
-                    {
-                        path: '/detail',
-                        name: 'detail',
-                        component: () => import('@/components/Detail')
                     }
                 ]
             },

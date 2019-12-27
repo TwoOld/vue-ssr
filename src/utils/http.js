@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function createAxios({ context, store, router }) {
+export function createAxios({ context, getStore, router }) {
     const http = axios.create({
         baseURL: context ? 'http://localhost:8080/api' : '/api'
     })

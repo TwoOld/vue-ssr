@@ -31,7 +31,13 @@ const proxy = require('http-proxy-middleware')
 
 app.use(express.static('./dist/client', { index: false }))
 app.use(cookieParser())
-app.use('/api', proxy({ target: 'http://localhost:8080', changeOrigin: true }))
+app.use('/api', proxy({
+    target: 'http://localhost:8080',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api': ''
+    },
+}))
 
 function csr(res) {
     // 读取文件
