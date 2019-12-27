@@ -72,5 +72,5 @@ app.get('*', async function (req, res) {
 })
 
 app.listen(3030, () => {
-    console.log('渲染服务器启动成功');
+    console.log('渲染服务器启动成功 http://localhost:3030');
 })
