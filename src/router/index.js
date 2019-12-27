@@ -15,12 +15,12 @@ export function createRouter() {
                     {
                         path: '/',
                         name: 'index',
-                        component: () => import('@/components/Index')
+                        component: () => import('@/pages/home/home')
                     },
                     {
-                        path: '/detail',
-                        name: 'detail',
-                        component: () => import('@/components/Detail')
+                        path: '/players',
+                        name: 'players',
+                        component: () => import('@/pages/players/players_home')
                     }
                 ]
             },
@@ -31,14 +31,14 @@ export function createRouter() {
                     {
                         path: '/login',
                         name: 'login',
-                        component: () => import('@/pages/Login')
+                        component: () => import('@/pages/login/login')
                     }
                 ]
             },
             {
                 path: '/404',
                 name: '404',
-                component: () => import('@/pages/NotFound'),
+                component: () => import('@/pages/404'),
                 hidden: true
             },
             { path: '*', redirect: '/404', hidden: true }

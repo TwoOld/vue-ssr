@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Index!</h1>
+    <h1>Home</h1>
     <p>Best {{best}}</p>
     <el-button type="primary" @click="reset">reset</el-button>
   </div>

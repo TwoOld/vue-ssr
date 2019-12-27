@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Detail</h1>
+    <h1>Players</h1>
     <ul>
       <li
         v-for="item in list"
